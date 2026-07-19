@@ -1,5 +1,24 @@
 # Android 17 sur piBrick — AMOLED, HDMI, luminosité et tactile
 
+<!-- PIBRICK_LATEST_START -->
+## Version recommandée
+
+### piBrick AOSP 17 display v6 — 90 Hz, HDMI, brightness, touch and autorotation
+
+[Télécharger la V6](https://github.com/Sconioo/pibrick-aosp17-display/releases/download/display-v6-90hz-hdmi-brightness-touch-autorotation/pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz)
+
+- AMOLED 1080x1240 à 90 Hz
+- HDMI 1 et 2
+- luminosité 0-100 % et boutons en 20 pas
+- tactile multipoint
+- autorotation MMA8451Q dans les quatre orientations
+- installateur automatique avec sauvegarde
+
+SHA-256 : `60f5871a200b212da21be3022590502fdbc603f8e7d24f752773f0a265dd6042`
+
+[Sources du noyau](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1) · [Toutes les releases](https://github.com/Sconioo/pibrick-aosp17-display/releases)
+<!-- PIBRICK_LATEST_END -->
+
 Ce projet ajoute le support matériel du piBrick Pocket CM5 à
 [KonstaKANG AOSP 17](https://konstakang.com/devices/rpi5/AOSP17/).
 
