@@ -91,7 +91,7 @@ Dans un terminal Linux :
 DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || pwd)"
 cd "$DOWNLOAD_DIR"
 tar -xzf pibrick-aosp17-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz
-cd pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation
+cd pibrick-aosp17-v6-90hz-hdmi-brightness-touch-autorotation
 ```
 
 `xdg-user-dir DOWNLOAD` sélectionne automatiquement le dossier de
