@@ -207,7 +207,7 @@ Chaque release reste téléchargeable pour faciliter les tests et le retour à u
 | V5 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points | [V5](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v5) |
 | V4 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas | [V4](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v4) |
 | V3 | AMOLED 90 Hz, HDMI-1/2 et configuration Android V3 | [V3](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v3) |
-| V2 | AMOLED 60 Hz, HDMI-1/2 et configuration Android V2 | [Release V2](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v2) |
+| V2 | AMOLED 60 Hz, HDMI-1/2 et configuration Android V2 | [V2](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v2) |
 | V1 | Première intégration AMOLED 60 Hz | [V1](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v1-60hz) |
 
 [Afficher toutes les releases](https://github.com/Sconioo/pibrick-aosp17/releases)
