@@ -81,7 +81,7 @@ Les anciennes releases restent disponibles comme solutions de repli :
 
 | Version | Fonctions principales | Lien |
 |---|---|---|
-| **V6 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité, tactile et autorotation | [Télécharger](https://github.com/Sconioo/pibrick-aosp17-display/releases/tag/display-v6-90hz-hdmi-brightness-touch-autorotation) |
+| **V6 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points et autorotation | [Télécharger](https://github.com/Sconioo/pibrick-aosp17-display/releases/tag/display-v6-90hz-hdmi-brightness-touch-autorotation) |
 | V5 | AMOLED 90 Hz, HDMI-1/2, luminosité, boutons et tactile 5 points | [Release V5](https://github.com/Sconioo/pibrick-aosp17-display/releases/tag/display-v5-90hz-hdmi-brightness-touch) |
 | V4 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons fins | [Release V4](https://github.com/Sconioo/pibrick-aosp17-display/releases/tag/display-v4-90hz-hdmi-brightness) |
 | V3 | AMOLED 90 Hz et HDMI-1/2 | [Release V3](https://github.com/Sconioo/pibrick-aosp17-display/releases/tag/display-v3-90hz-hdmi) |
