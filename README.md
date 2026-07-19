@@ -30,7 +30,7 @@ restent applicables. Ce dépôt ne prétend pas remplacer leurs auteurs.
 <!-- PIBRICK_LATEST_START -->
 ## Version recommandée : V6
 
-### [⬇️ Télécharger la V6 complète](https://github.com/Sconioo/pibrick-aosp17/releases/download/display-v6-90hz-hdmi-brightness-touch-autorotation/pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz)
+### [⬇️ Télécharger la V6 complète](https://github.com/Sconioo/pibrick-aosp17/releases/download/v6/pibrick-aosp17-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz)
 
 La V6 est la dernière version testée sur un vrai piBrick Pocket CM5.
 
@@ -49,10 +49,10 @@ Noyau validé : `Linux 6.18.26-g9944b3831291-v8`
 SHA-256 de l’archive :
 
 ```text
-60f5871a200b212da21be3022590502fdbc603f8e7d24f752773f0a265dd6042
+e469e532aa8e0973f2d581fae9862dc6f5e7ad34374963f16e7ec7d21069dfa5
 ```
 
-[Notes de la release V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v6-90hz-hdmi-brightness-touch-autorotation) ·
+[Notes de la release V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v6) ·
 [Sources du noyau V6](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1)
 <!-- PIBRICK_LATEST_END -->
 
@@ -90,7 +90,7 @@ Dans un terminal Linux :
 ```bash
 DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || pwd)"
 cd "$DOWNLOAD_DIR"
-tar -xzf pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz
+tar -xzf pibrick-aosp17-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz
 cd pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation
 ```
 
@@ -104,13 +104,13 @@ Optionnel, mais recommandé : contrôler l’archive téléchargée.
 ```bash
 DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || pwd)"
 cd "$DOWNLOAD_DIR"
-sha256sum pibrick-aosp17-display-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz
+sha256sum pibrick-aosp17-v6-90hz-hdmi-brightness-touch-autorotation.tar.gz
 ```
 
 Le résultat doit être :
 
 ```text
-60f5871a200b212da21be3022590502fdbc603f8e7d24f752773f0a265dd6042
+e469e532aa8e0973f2d581fae9862dc6f5e7ad34374963f16e7ec7d21069dfa5
 ```
 
 ### 3. Passer le piBrick en mode `rpiboot`
@@ -203,7 +203,7 @@ Chaque release reste téléchargeable pour faciliter les tests et le retour à u
 
 | Version | Fonctions principales | Release |
 |---|---|---|
-| **V6 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation | [V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v6-90hz-hdmi-brightness-touch-autorotation) |
+| **V6 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation | [V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v6) |
 | V5 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points | [V5](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v5-90hz-hdmi-brightness-touch) |
 | V4 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas | [V4](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v4-90hz-hdmi-brightness) |
 | V3 | AMOLED 90 Hz et HDMI-1/2 | [V3](https://github.com/Sconioo/pibrick-aosp17/releases/tag/display-v3-90hz-hdmi) |
