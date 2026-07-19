@@ -236,17 +236,29 @@ Chaque archive de release contient :
 
 ### Branches noyau publiques et validées
 
-| Étape | Branche | Utilisation |
+| Étape noyau | Branche | Versions concernées |
 |---|---|---|
-| Affichage AMOLED initial | [`pibrick/display-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/display-v1) | Base des V1 et V2 |
-| Tactile | [`pibrick/touch-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/touch-v1) | Noyau de la V5 |
-| Autorotation | [`pibrick/autorotation-driver-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1) | Noyau final de la V6 |
+| AMOLED 60 Hz | [`pibrick/display-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/display-v1) | V1 et V2 |
+| AMOLED 90 Hz | [`pibrick/display-v2-90hz`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/display-v2-90hz) | V3 et V4 ; base des versions suivantes |
+| Tactile | [`pibrick/touch-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/touch-v1) | V5 |
+| Autorotation | [`pibrick/autorotation-driver-v1`](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1) | V6 |
 
-Les changements intermédiaires des V2, V3 et V4 touchent aussi
-`drm_hwcomposer`, le HAL Light et le framework Android. Ils sont conservés sous
-forme de patchs dans le dossier `source/` de chaque archive correspondante.
-Cette présentation évite de faire croire qu’une seule branche noyau contient
-tous les composants Android.
+### Construction cumulative des versions
+
+- **V1** introduit l’affichage AMOLED à 60 Hz.
+- **V2** conserve ce noyau et ajoute la correction `drm_hwcomposer` pour les
+  deux sorties HDMI.
+- **V3** introduit le noyau AMOLED à 90 Hz et conserve la correction HDMI.
+- **V4** ajoute le HAL Light, l’overlay de luminosité et la modification du
+  framework Android pour une plage 0–100 % et des boutons en 20 pas.
+- **V5** ajoute le pilote tactile Hynitron CST3530 à la base V4.
+- **V6** ajoute le MMA8451Q et la correction noyau nécessaire aux quatre
+  orientations automatiques.
+
+Les branches du tableau concernent le noyau Linux. Les modifications de
+`drm_hwcomposer`, du HAL Light, des overlays et du framework Android ne font
+pas partie du dépôt noyau. Elles sont conservées sous forme de patchs dans le
+dossier `source/` de chaque archive concernée.
 
 ## Périmètre validé
 
