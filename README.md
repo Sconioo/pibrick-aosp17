@@ -221,8 +221,13 @@ $HOME/pibrick-aosp17-backups/
 ```
 
 Le chemin exact apparaît avant la confirmation. Ne supprimez pas ce dossier
-tant que la nouvelle version n’a pas été testée. Pour revenir à une ancienne
-fonctionnalité, utilisez la release correspondante ci-dessus.
+tant que la nouvelle version n’a pas été testée.
+
+Chaque archive V1 à V6 applique un état complet. Il est donc possible de
+passer directement à une version antérieure, puis de revenir à la V6, sans
+réinstaller Android. Le cycle complet **V6 → V1 → V6** a été validé sur le
+piBrick réel. Utilisez simplement l’installateur de la release souhaitée en
+mode `rpiboot`.
 
 ## Sources et reproductibilité
 
@@ -266,7 +271,10 @@ La V6 a été validée sur :
 
 - piBrick Pocket CM5 ;
 - KonstaKANG AOSP 17 du 2 juillet 2026 ;
-- AMOLED, HDMI-1, HDMI-2, luminosité, boutons, tactile et autorotation.
+- AMOLED 90 Hz, HDMI-1, HDMI-2, luminosité 0–100 %, boutons +/−,
+  tactile et autorotation dans les quatre directions ;
+- installation successive des versions antérieures jusqu’à la V1 ;
+- retour direct de la V1 vers la V6 avec restauration de toutes les fonctions.
 
 Chaque nouvelle étape n’est déclarée recommandée qu’après test sur le matériel
 réel.
