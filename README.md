@@ -33,7 +33,8 @@ restent applicables. Ce dépôt ne prétend pas remplacer leurs auteurs.
 ### [⬇️ Télécharger la V7 complète](https://github.com/Sconioo/pibrick-aosp17/releases/download/v7/pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output.tar.gz)
 
 La V7 est la dernière version testée sur un vrai piBrick Pocket CM5. Elle
-reprend l'intégralité de la V6 et ajoute la sortie audio interne.
+intègre l’AMOLED 90 Hz, les deux sorties HDMI, la luminosité, le tactile,
+l’autorotation et la sortie audio interne.
 
 | Fonction | État validé |
 |---|---|
@@ -69,7 +70,7 @@ Vous avez besoin de :
 - un piBrick Pocket CM5 avec l’image AOSP 17 du 2 juillet 2026 ;
 - un ordinateur Linux avec `sudo`, `lsblk`, `mount`, `sha256sum` et `tar` ;
 - un câble USB de données pour le mode `rpiboot` ;
-- l’archive V6 téléchargée ci-dessus.
+- l’archive V7 téléchargée ci-dessus.
 
 Important :
 
@@ -116,7 +117,7 @@ sha256sum pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output
 Le résultat doit être :
 
 ```text
-e469e532aa8e0973f2d581fae9862dc6f5e7ad34374963f16e7ec7d21069dfa5
+3fbf7b559a422b8dcd3baaf80929d6d3efee0a7384e21118afd51e8bef8df4ea
 ```
 
 ### 3. Passer le piBrick en mode `rpiboot`
@@ -209,7 +210,7 @@ Chaque release reste téléchargeable pour faciliter les tests et le retour à u
 
 | Version | Fonctions principales | Release |
 |---|---|---|
-| **V7 — recommandée** | V6 complète + sortie audio interne C-Media, route `dac` | [V7](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v7) |
+| **V7 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation, sortie audio interne C-Media, route `dac` | [V7](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v7) |
 | V6 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation | [V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v6) |
 | V5 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points | [V5](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v5) |
 | V4 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas | [V4](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v4) |
@@ -266,8 +267,8 @@ Chaque archive de release contient :
 - **V5** ajoute le pilote tactile Hynitron CST3530 à la base V4.
 - **V6** ajoute le MMA8451Q et la correction noyau nécessaire aux quatre
   orientations automatiques.
-- **V7** conserve la base noyau V6 et ajoute le correctif framework `UsbAlsaManager`
-  pour la carte C-Media interne ainsi que la route audio persistante `dac`.
+- **V7** ajoute le correctif framework `UsbAlsaManager` pour la carte
+  C-Media interne ainsi que la route audio persistante `dac`.
 
 Les branches du tableau concernent le noyau Linux. Les modifications de
 `drm_hwcomposer`, du HAL Light, des overlays et du framework Android ne font
