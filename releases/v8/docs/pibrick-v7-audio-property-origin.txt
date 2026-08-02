@@ -1,0 +1,45 @@
+===== VALEURS ACTIVES =====
+persist.vendor.audio.device=dac
+ro.boot.audio.tinyalsa.simulate_input=false
+
+===== FICHIERS DE PROPRIÉTÉS =====
+
+--- /vendor/build.prop ---
+29:persist.vendor.audio.device=dac
+30:ro.boot.audio.tinyalsa.simulate_input=false
+
+===== LIGNE DE COMMANDE DU NOYAU =====
+stack_depot_disable=on cgroup_disable=pressure reboot=w coherent_pool=1M 8250.nr_uarts=1 pci=pcie_bus_safe cgroup_disable=memory numa_policy=interleave nvme.max_host_mem_size_mb=32  numa=fake=8 system_heap.max_order=0 iommu_dma_numa_policy=interleave smsc95xx.macaddr=88:A2:9E:E0:22:44 vc_mem.mem_base=0x3fc00000 vc_mem.mem_size=0x40000000  console=ttyAMA10,115200 androidboot.hardware=rpi5 androidboot.selinux=permissive androidboot.serialno=bfede649bd83d7f1 androidboot.btmacaddr=11:22:bd:83:d7:f1
+
+===== BOOTCONFIG =====
+
+===== SCRIPT MICROPHONE =====
+#!/system/bin/sh
+
+TAG="pibrick-microphone"
+AMIXER="/vendor/bin/amixer"
+
+# Le périphérique USB audio peut apparaître après le démarrage de sysinit.
+for N in $(seq 1 90); do
+    if "$AMIXER" -D hw:Device \
+        cget name='Mic Capture Volume' >/dev/null 2>&1; then
+
+        "$AMIXER" -D hw:Device \
+            cset name='Mic Capture Volume' 32 >/dev/null 2>&1
+
+        "$AMIXER" -D hw:Device \
+            cset name='Auto Gain Control' on >/dev/null 2>&1
+
+        /system/bin/log -p i -t "$TAG" \
+            "C-Media microphone configured: gain 32/35, AGC on"
+
+        exit 0
+    fi
+
+    sleep 1
+done
+
+/system/bin/log -p e -t "$TAG" \
+    "C-Media microphone not detected after 90 seconds"
+
+exit 0

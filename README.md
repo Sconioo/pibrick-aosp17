@@ -17,7 +17,7 @@ présenté dans l’ordre chronologique :
 | 1. Matériel | [amarullz / piBrick](https://github.com/amarullz/piBrick) | Conception du piBrick Pocket CM5, fichiers matériels et documentation de référence |
 | 2. Pilotes Linux | [lshaf / pibrick-driver](https://github.com/lshaf/pibrick-driver) | Dépôt de pilotes de référence pour l’AMOLED, le tactile et les périphériques du piBrick |
 | 3. Base Android Raspberry Pi | [KonstaKANG](https://konstakang.com/devices/rpi5/AOSP17/) et [Raspberry Vanilla](https://github.com/raspberry-vanilla) | AOSP 17 pour Raspberry Pi 5, arborescence appareil et noyau Android de base |
-| 4. Portage piBrick AOSP 17 | [Sconioo](https://github.com/Sconioo) | Adaptation, compilation, intégration Android, tests matériels, installateurs et releases cumulatives V1 à V7 |
+| 4. Portage piBrick AOSP 17 | [Sconioo](https://github.com/Sconioo) | Adaptation, compilation, intégration Android, tests matériels, installateurs et releases cumulatives V1 à V8 |
 
 Le travail réalisé dans ce dépôt comprend notamment l’intégration AMOLED à
 90 Hz, la correction des deux sorties HDMI, la luminosité 0–100 %, les boutons
@@ -28,39 +28,38 @@ Les licences et mentions présentes dans les projets et pilotes d’origine
 restent applicables. Ce dépôt ne prétend pas remplacer leurs auteurs.
 
 <!-- PIBRICK_LATEST_START -->
-## Version recommandée : V7
+## Version recommandée : V8
 
-### [⬇️ Télécharger la V7 complète](https://github.com/Sconioo/pibrick-aosp17/releases/download/v7/pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output.tar.gz)
+### [⬇️ Télécharger la V8 complète](https://github.com/Sconioo/pibrick-aosp17/releases/download/v8/pibrick-aosp17-v8-90hz-hdmi-brightness-touch-autorotation-audio-microphone-battery.tar.gz)
 
-La V7 est la dernière version testée sur un vrai piBrick Pocket CM5. Elle
-intègre l’AMOLED 90 Hz, les deux sorties HDMI, la luminosité, le tactile,
-l’autorotation et la sortie audio interne.
+La V8 est la dernière version testée sur un vrai piBrick Pocket CM5. Elle
+conserve toutes les fonctions des V1 à V7, la batterie V1 lissée et la sortie
+audio interne, puis ajoute le microphone C-Media entièrement fonctionnel.
 
 | Fonction | État validé |
 |---|---|
 | AMOLED | 1080×1240 à 90 Hz |
-| HDMI | HDMI-1 et HDMI-2, simultanément avec l'AMOLED |
+| HDMI | HDMI-1 et HDMI-2, simultanément avec l’AMOLED |
 | Luminosité AMOLED | Réglable de 0 à 100 % |
 | Boutons physiques | `−` et `+`, progression en 20 pas |
 | Tactile | Hynitron CST3530, 5 points |
 | Autorotation | MMA8451Q, quatre orientations |
 | Sortie audio | Haut-parleurs internes C-Media, route Android `dac` |
-| Installation | Une seule commande `./install.sh`, avec sauvegarde automatique |
-
-Le microphone n'est pas encore validé. Le niveau de batterie affiché n'est pas
-fiable lors du branchement ou du retrait d'une alimentation et ne fait pas
-partie de cette version.
+| Microphone | C-Media, gain 32/35, AGC activé et réglage automatique |
+| Batterie | Jauge V1 lissée conservée |
+| SELinux | Service microphone testé en mode `Enforcing` sans refus AVC ALSA |
+| Installation | Une commande `./install.sh`, sauvegarde et rollback |
 
 Noyau validé : `Linux 6.18.26-g9944b3831291-v8`
 
-SHA-256 de l'archive :
+SHA-256 de l’archive :
 
 ```text
-3fbf7b559a422b8dcd3baaf80929d6d3efee0a7384e21118afd51e8bef8df4ea
+6a06f64128413de84ddb0f03fb2853be447fcb50057c45f2ed80c5797e09285b
 ```
 
-[Notes de la release V7](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v7) ·
-[Sources du noyau V6/V7](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1)
+[Notes de la release V8](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v8) ·
+[Sources du noyau V6/V8](https://github.com/Sconioo/android_kernel_brcm_rpi/tree/pibrick/autorotation-driver-v1)
 <!-- PIBRICK_LATEST_END -->
 
 ## Avant de commencer
@@ -70,7 +69,7 @@ Vous avez besoin de :
 - un piBrick Pocket CM5 avec l’image AOSP 17 du 2 juillet 2026 ;
 - un ordinateur Linux avec `sudo`, `lsblk`, `mount`, `sha256sum` et `tar` ;
 - un câble USB de données pour le mode `rpiboot` ;
-- l’archive V7 téléchargée ci-dessus.
+- l’archive V8 téléchargée ci-dessus.
 
 Important :
 
@@ -90,15 +89,17 @@ Téléchargez le build AOSP 17 du 2 juillet 2026 sur la
 sur le piBrick. Démarrez Android une première fois pour vérifier qu’il
 fonctionne, puis éteignez complètement le piBrick.
 
-### 2. Décompresser la V7
+### 2. Décompresser la V8
 
 Dans un terminal Linux :
 
 ```bash
 DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || pwd)"
 cd "$DOWNLOAD_DIR"
-tar -xzf pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output.tar.gz
-cd pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output
+rm -rf pibrick-aosp17-v8
+mkdir -p pibrick-aosp17-v8
+tar -xzf pibrick-aosp17-v8-90hz-hdmi-brightness-touch-autorotation-audio-microphone-battery.tar.gz -C pibrick-aosp17-v8 --strip-components=1
+cd pibrick-aosp17-v8
 ```
 
 `xdg-user-dir DOWNLOAD` sélectionne automatiquement le dossier de
@@ -111,13 +112,13 @@ Optionnel, mais recommandé : contrôler l’archive téléchargée.
 ```bash
 DOWNLOAD_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || pwd)"
 cd "$DOWNLOAD_DIR"
-sha256sum pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output.tar.gz
+sha256sum pibrick-aosp17-v8-90hz-hdmi-brightness-touch-autorotation-audio-microphone-battery.tar.gz
 ```
 
 Le résultat doit être :
 
 ```text
-3fbf7b559a422b8dcd3baaf80929d6d3efee0a7384e21118afd51e8bef8df4ea
+6a06f64128413de84ddb0f03fb2853be447fcb50057c45f2ed80c5797e09285b
 ```
 
 ### 3. Passer le piBrick en mode `rpiboot`
@@ -171,8 +172,7 @@ Vérifiez ensuite :
   d’un écran HDMI se règle sur l’écran HDMI lui-même.
 - En mode miroir, l’image HDMI suit l’orientation actuelle du piBrick. Une
   rotation en portrait est donc également visible sur HDMI.
-- L’icône de batterie et la gestion de charge ne font pas partie de ce paquet
-  consacré à l’affichage et aux entrées.
+- La V8 conserve la jauge de batterie V1 lissée dans le paquet cumulatif.
 
 ## Dépannage rapide
 
@@ -210,7 +210,8 @@ Chaque release reste téléchargeable pour faciliter les tests et le retour à u
 
 | Version | Fonctions principales | Release |
 |---|---|---|
-| **V7 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation, sortie audio interne C-Media, route `dac` | [V7](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v7) |
+| **V8 — recommandée** | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation, sortie audio C-Media, microphone, batterie V1 lissée | [V8](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v8) |
+| V7 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation, sortie audio interne C-Media, route `dac` | [V7](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v7) |
 | V6 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points, autorotation | [V6](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v6) |
 | V5 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas, tactile 5 points | [V5](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v5) |
 | V4 | AMOLED 90 Hz, HDMI-1/2, luminosité 0–100 %, boutons 20 pas | [V4](https://github.com/Sconioo/pibrick-aosp17/releases/tag/v4) |
@@ -231,7 +232,7 @@ $HOME/pibrick-aosp17-backups/
 Le chemin exact apparaît avant la confirmation. Ne supprimez pas ce dossier
 tant que la nouvelle version n’a pas été testée.
 
-Chaque archive V1 à V7 applique un état complet. Il est donc possible de
+Chaque archive V1 à V8 applique un état complet. Il est donc possible de
 passer directement à une version antérieure, puis de revenir à la V6, sans
 réinstaller Android. Le cycle complet **V6 → V1 → V6** a été validé sur le
 piBrick réel. Utilisez simplement l’installateur de la release souhaitée en
@@ -269,6 +270,10 @@ Chaque archive de release contient :
   orientations automatiques.
 - **V7** ajoute le correctif framework `UsbAlsaManager` pour la carte
   C-Media interne ainsi que la route audio persistante `dac`.
+- **V8** conserve la sortie audio et la batterie V1 lissée, ajoute
+  l’analyse initiale des nœuds ALSA dans `UsbAlsaManager`, reconnaît le
+  microphone C-Media et applique automatiquement le gain 32/35 avec l’AGC
+  depuis le domaine SELinux `hal_audio_default`.
 
 Les branches du tableau concernent le noyau Linux. Les modifications de
 `drm_hwcomposer`, du HAL Light, des overlays et du framework Android ne font
@@ -276,6 +281,11 @@ pas partie du dépôt noyau. Elles sont conservées sous forme de patchs dans le
 dossier `source/` de chaque archive concernée.
 
 ## Périmètre validé
+
+La V8 a été validée sur un piBrick Pocket CM5 réel : installation,
+redémarrage, écran, tactile, autorotation, HDMI, luminosité, sortie audio,
+enregistrement microphone, réécoute, jauge de batterie, rollback,
+réinstallation et test du service microphone sous SELinux `Enforcing`.
 
 La V6 a été validée sur :
 

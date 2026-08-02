@@ -1,0 +1,90 @@
+piBrick AOSP 17 — V7 sortie audio
+=====================================
+
+Base cumulative
+---------------
+Composant : components/v6
+Release   : v6
+Archive SHA-256 publiée : e469e532aa8e0973f2d581fae9862dc6f5e7ad34374963f16e7ec7d21069dfa5
+
+Sortie audio
+------------
+Composant : components/audio
+Base testée : framework audio V7.5.3
+Codec interne : C-Media USB Audio 0d8c:0014
+Route primaire : persist.vendor.audio.device=dac
+Framework : UsbAlsaManager denylist INPUT | OUTPUT
+Résultat : haut-parleurs internes, libellé Android « Haut-parleur »
+
+Exclusions
+----------
+- microphone non validé
+- vendor.img V8.1.3 rejeté
+- batterie/refroidissement non validés pour cette release
+
+Publication
+-----------
+Tag prévu : v7
+Asset prévu : pibrick-aosp17-v7-90hz-hdmi-brightness-touch-autorotation-audio-output.tar.gz
+La publication doit être faite uniquement après réinstallation et validation
+sur le piBrick réel.
+
+Installateur V7.0.1
+-------------------
+Détection automatique des ensembles services :
+- V6 : components/v6/files/services.*
+- Audio : components/audio/payload/system/framework/services.*
+Le mode audio conserve les fichiers déjà installés et ne finalise que la route
+persist.vendor.audio.device=dac.
+
+Installateur V7.0.2
+-------------------
+Correction de la détection de la partition système :
+analyse en lecture seule de toutes les partitions ext2/3/4 du disque rpiboot
+jusqu'à trouver system/framework/services.jar ou framework/services.jar.
+
+Installateur V7.0.3
+-------------------
+La présence d'un profil générique USB Headset dans le dump de la politique
+audio est informative et ne représente pas nécessairement la route active.
+La validation logicielle repose sur :
+- persist.vendor.audio.device=dac
+- présence ALSA de C-Media Electronics Inc. USB Audio Device
+La procédure utilisateur normale est une commande unique : ./install.sh
+
+===== V8 — MICROPHONE ET BATTERIE =====
+
+Validation matérielle : 2026-08-02
+
+Image SHA256:
+ce45152acb573f0deffbf0b953df6a8dc14392664dacdb667006a64eee0fe4b0
+
+DTBO SHA256:
+98bf1b2606b8bcfcc00440a5924a26549bc617bbac37cbbf904b60e3f0eb9583
+
+services.jar SHA256:
+5145a87744fe96127c1e0ff317039d989cf2a6383e1fa7ab3fd72d47521850ae
+
+services.art SHA256:
+9b2fae2e3a01655fb752c0d940e7199b3d3c3a5121d8433b8f9c320033ad285a
+
+services.odex SHA256:
+d352c6502b88072f42c9e196fdced4ff6b40dbc084dc086639990e9813d370cd
+
+services.vdex SHA256:
+cd940512c042990e09a2a3c3cd383f53c4dc44ca9b33fb723a55c85e7d59ec49
+
+APEX Health SHA256:
+9a967ab26d5a6d894daef8ee88741711e35fa39a83e7ca6287e0f3527554fb32
+
+Microphone:
+- carte C-Media 0d8c:0014 ;
+- entrée Android reconnue ;
+- gain 32/35 ;
+- AGC activé ;
+- aucune micro-coupure constatée lors de la validation ;
+- aucun APEX audio expérimental inclus.
+
+Batterie:
+- état V1 lissé préservé ;
+- Image, DTBO et APEX Health intégrés comme un ensemble validé.

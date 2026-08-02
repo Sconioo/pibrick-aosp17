@@ -1,0 +1,22 @@
+piBrick AOSP 17 — V8 final candidate
+Date de figement : 2026-08-02
+Build Android attendu : CP2A.260605.016
+
+Microphone :
+- gain : 32/35
+- AGC : on
+- services : pibrick_mic_gain_hal, pibrick_mic_agc_hal
+- domaine SELinux : hal_audio_default
+- contexte exécutable : u:object_r:hal_audio_default_exec:s0
+
+Hachages :
+- init.rpi5.rc : 18547fc5148556453c6210eb5d69b8f0b399aa44d1c49c1f3df45be3b1f7b453
+- android.hardware.audio.service : e35c4ede27f85fe9f8a96cc8e798eb004cf91a87e99ac46ae24784dfe38a3a5d
+- preuve init testée : b583b041976c4f81e031431e86d7f04ed721f5881f9f4bd198856dd7edaf0acb
+
+Validation physique déclarée par l’utilisateur :
+- sortie audio : OK
+- microphone : OK
+- absence de microcoupures : OK
+- batterie : OK
+- test temporaire SELinux Enforcing : OK
