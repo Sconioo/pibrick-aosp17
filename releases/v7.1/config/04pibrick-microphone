@@ -1,0 +1,29 @@
+#!/system/bin/sh
+
+TAG="pibrick-microphone"
+AMIXER="/vendor/bin/amixer"
+
+# Le périphérique USB audio peut apparaître après le démarrage de sysinit.
+for N in $(seq 1 90); do
+    if "$AMIXER" -D hw:Device \
+        cget name='Mic Capture Volume' >/dev/null 2>&1; then
+
+        "$AMIXER" -D hw:Device \
+            cset name='Mic Capture Volume' 32 >/dev/null 2>&1
+
+        "$AMIXER" -D hw:Device \
+            cset name='Auto Gain Control' on >/dev/null 2>&1
+
+        /system/bin/log -p i -t "$TAG" \
+            "C-Media microphone configured: gain 32/35, AGC on"
+
+        exit 0
+    fi
+
+    sleep 1
+done
+
+/system/bin/log -p e -t "$TAG" \
+    "C-Media microphone not detected after 90 seconds"
+
+exit 0
