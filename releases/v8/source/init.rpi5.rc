@@ -1,0 +1,31 @@
+import /vendor/etc/init/hw/init.${ro.hardware}.usb.rc
+import /vendor/etc/init/hw/init.konstakang.rc
+
+on init
+    symlink /sdcard /storage/sdcard0
+
+on fs
+    mount_all /vendor/etc/fstab.${ro.hardware} --early
+
+on late-fs
+    mount_all /vendor/etc/fstab.${ro.hardware} --late
+
+# PIBRICK_V8_MIC_HAL_AUDIO_FINAL_BEGIN
+# Final : Init effectue une transition directe vers hal_audio_default.
+on property:sys.boot_completed=1
+    wait /dev/snd/controlC2 90
+    start pibrick_mic_gain_hal
+    start pibrick_mic_agc_hal
+
+service pibrick_mic_gain_hal /vendor/bin/hw/android.hardware.audio.service -D hw:Device cset numid=8 32
+    user root
+    group system audio
+    disabled
+    oneshot
+
+service pibrick_mic_agc_hal /vendor/bin/hw/android.hardware.audio.service -D hw:Device cset numid=9 on
+    user root
+    group system audio
+    disabled
+    oneshot
+# PIBRICK_V8_MIC_HAL_AUDIO_FINAL_END

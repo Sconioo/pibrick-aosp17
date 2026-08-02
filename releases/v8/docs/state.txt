@@ -1,0 +1,48 @@
+===== BUILD =====
+Raspberry/aosp_rpi5/rpi5:17/CP2A.260605.016/eng.tuomas:userdebug/dev-keys
+1
+
+===== AUDIO =====
+dac
+false
+
+===== CARTES ALSA =====
+ 0 [vc4hdmi0       ]: vc4-hdmi - vc4-hdmi-0
+                      vc4-hdmi-0
+ 1 [vc4hdmi1       ]: vc4-hdmi - vc4-hdmi-1
+                      vc4-hdmi-1
+ 2 [Device         ]: USB-Audio - USB Audio Device
+                      C-Media Electronics Inc. USB Audio Device at usb-xhci-hcd.1-1.2, full speed
+
+===== MICROPHONE =====
+numid=8,iface=MIXER,name='Mic Capture Volume'
+  ; type=INTEGER,access=rw---R--,values=1,min=0,max=35,step=0
+  : values=32
+  | dBminmax-min=-12.00dB,max=23.00dB
+numid=9,iface=MIXER,name='Auto Gain Control'
+  ; type=BOOLEAN,access=rw------,values=1
+  : values=on
+
+===== BATTERIE =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: true
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +11s10ms
+  Max charging voltage: 0
+  Charge counter: 4750000
+  status: 2
+  health: 2
+  present: true
+  level: 95
+  scale: 100
+  voltage: 3864
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +11s10ms
+ The last voltage value sent via the battery changed broadcast: 3844
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3

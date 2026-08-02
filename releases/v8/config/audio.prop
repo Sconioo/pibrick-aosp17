@@ -1,0 +1,2 @@
+persist.vendor.audio.device=dac
+ro.boot.audio.tinyalsa.simulate_input=false

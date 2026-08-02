@@ -1,0 +1,1 @@
+6a06f64128413de84ddb0f03fb2853be447fcb50057c45f2ed80c5797e09285b  pibrick-aosp17-v8-90hz-hdmi-brightness-touch-autorotation-audio-microphone-battery.tar.gz

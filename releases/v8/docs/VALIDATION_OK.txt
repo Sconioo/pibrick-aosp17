@@ -1,0 +1,4 @@
+Sauvegarde contrôlée le 2026-08-02T02:25:31+02:00
+État : prête pour la création du paquet V7
+Batterie : V1 lissée
+Microphone : USB C-Media, gain 32/35, AGC activé
