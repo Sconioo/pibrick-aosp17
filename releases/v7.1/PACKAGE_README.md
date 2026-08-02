@@ -18,7 +18,7 @@ persist.vendor.audio.device=dac
 ro.boot.audio.tinyalsa.simulate_input=false
 ```
 
-Ce paquet est une archive de l’état validé. L’installateur rpiboot sera ajouté après contrôle du contenu et des empreintes.
+Ce paquet contient l’état validé ainsi que l’installateur rpiboot, le script de restauration et le contrôle ADB.
 
 ## Scripts fournis
 

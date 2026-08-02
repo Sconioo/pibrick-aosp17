@@ -18,5 +18,5 @@ Publier la V7.1, qui fige l’état V7 final validé sur le matériel réel.
 - installateur rpiboot ;
 - restauration ;
 - vérification ADB ;
-- correctif source `UsbAlsaManager` ;
+- source complet `UsbAlsaManager.java` correspondant au framework validé ;
 - script de gain microphone et propriétés audio.
